@@ -1,0 +1,98 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>voyagr - Signup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+<nav class="bg-white shadow-md">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between">
+      <div class="flex space-x-4">
+        <a href="index.html" class="flex items-center py-5 px-2 text-blue-600 font-bold text-xl">voyagr</a>
+      </div>
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="services.html" class="py-5 px-3 text-gray-700 hover:text-blue-600">Services</a>
+        <a href="destinations.html" class="py-5 px-3 text-gray-700 hover:text-blue-600">Top Destinations</a>
+        <a href="14peaks.html" class="py-5 px-3 text-gray-700 hover:text-blue-600">Top Adventures</a>
+        <a href="profile.html" class="py-5 px-3 text-gray-700 hover:text-blue-600">Profile</a>
+        <a href="contact.html" class="py-2 px-3 bg-blue-600 text-white rounded hover:bg-blue-700" id="joinNowLink">Join Now</a>
+      </div>
+      <div class="md:hidden flex items-center">
+        <button id="mobileBtn" class="mobile-menu-button">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu hidden md:hidden">
+    <a href="services.html" class="block py-2 px-4 text-sm">Services</a>
+    <a href="destinations.html" class="block py-2 px-4 text-sm">Top Destinations</a>
+    <a href="14peaks.html" class="block py-2 px-4 text-sm">Top Adventures</a>
+    <a href="profile.html" class="block py-2 px-4 text-sm">Profile</a>
+    <a href="contact.html" class="block py-2 px-4 text-sm">Contact</a>
+    <a href="login.html" class="block py-2 px-4 text-sm text-white bg-blue-600">Join/Sign in</a>
+  </div>
+  <script>
+    const btn = document.getElementById('mobileBtn');
+    const menu = document.querySelector('.mobile-menu');
+    btn && btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    // Join Now link navigation
+    const joinNow = document.getElementById('joinNowLink');
+    joinNow && joinNow.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = 'signup.html';
+    });
+  </script>
+</nav>
+
+<div class="max-w-lg mx-auto mt-12 bg-white p-8 rounded-xl shadow">
+  <h2 class="text-2xl font-bold mb-4">Create your account</h2>
+  <form id="signupForm" onsubmit="openPolicy(event)">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input id="firstName" class="p-3 border rounded" placeholder="First name" required>
+      <input id="lastName" class="p-3 border rounded" placeholder="Last name" required>
+    </div>
+    <input id="phone" class="w-full p-3 border rounded mt-4" placeholder="Phone number" required>
+    <input id="email" type="email" class="w-full p-3 border rounded mt-4" placeholder="Email" required>
+    <input id="password" type="password" class="w-full p-3 border rounded mt-4" placeholder="Password" required>
+    <input id="password2" type="password" class="w-full p-3 border rounded mt-4" placeholder="Retype password" required>
+    <div class="flex items-center mt-4">
+      <input id="privacyToggle" type="checkbox" class="mr-2"><label for="privacyToggle" class="text-sm">Set profile to private</label>
+    </div>
+    <button class="w-full bg-blue-600 text-white p-3 rounded mt-6">Sign up</button>
+  </form>
+</div>
+
+<!-- Privacy Modal -->
+<div id="policyModal" class="fixed inset-0 bg-black bg-opacity-40 hidden items-center justify-center">
+  <div class="bg-white max-w-2xl p-6 rounded-lg shadow-lg mx-4">
+    <h3 class="text-xl font-bold mb-4">voyagr Privacy Policy & Disclaimer</h3>
+    <div class="max-h-64 overflow-auto text-sm text-gray-700 space-y-3">
+      <p>voyagr is a platform to connect travelers, host trips, join trips, and share travel journeys.</p>
+      <p><strong>Important:</strong> We are not responsible for any incidents, accidents, losses, or legal issues that occur during any trip arranged through voyagr.</p>
+      <p>Users are responsible for their own safety, planning, expenses, and compliance with local laws and regulations. Always exercise caution and consult local authorities or professional guides when needed.</p>
+      <p>By continuing you agree that voyagr only provides a platform for hosting and joining trips; any actions, decisions, or outcomes that occur during a trip are the responsibility of the participants.</p>
+    </div>
+    <div class="mt-6 flex justify-end space-x-3">
+      <button onclick="cancelSignup()" class="px-4 py-2 border rounded">Cancel</button>
+      <button onclick="acceptPolicy()" class="px-4 py-2 bg-blue-600 text-white rounded">Yes, I Read All</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openPolicy(e){
+  e.preventDefault();
+  document.getElementById('policyModal').classList.remove('hidden');
+}
+function cancelSignup(){ document.getElementById('policyModal').classList.add('hidden'); window.location.href='signup.html'; }
+function acceptPolicy(){ document.getElementById('policyModal').classList.add('hidden'); window.location.href='profile.html'; }
+</script>
+
+</body>
+</html>

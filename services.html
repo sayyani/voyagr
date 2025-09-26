@@ -1,0 +1,75 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>voyagr - Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+<nav class="bg-white shadow-md">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between">
+      <div class="flex space-x-4">
+        <a href="index.html" class="flex items-center py-5 px-2 text-blue-600 font-bold text-xl">voyagr</a>
+      </div>
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="services.html" class="py-5 px-3 text-gray-700 hover:text-blue-600">Services</a>
+        <a href="destinations.html" class="py-5 px-3 text-gray-700 hover:text-blue-600">Top Destinations</a>
+        <a href="14peaks.html" class="py-5 px-3 text-gray-700 hover:text-blue-600">Top Adventures</a>
+        <a href="profile.html" class="py-5 px-3 text-gray-700 hover:text-blue-600">Profile</a>
+        <a href="contact.html" class="py-2 px-3 bg-blue-600 text-white rounded hover:bg-blue-700" id="joinNowLink">Join Now</a>
+      </div>
+      <div class="md:hidden flex items-center">
+        <button id="mobileBtn" class="mobile-menu-button">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu hidden md:hidden">
+    <a href="services.html" class="block py-2 px-4 text-sm">Services</a>
+    <a href="destinations.html" class="block py-2 px-4 text-sm">Top Destinations</a>
+    <a href="14peaks.html" class="block py-2 px-4 text-sm">Top Adventures</a>
+    <a href="profile.html" class="block py-2 px-4 text-sm">Profile</a>
+    <a href="contact.html" class="block py-2 px-4 text-sm">Contact</a>
+    <a href="login.html" class="block py-2 px-4 text-sm text-white bg-blue-600">Join/Sign in</a>
+  </div>
+  <script>
+    const btn = document.getElementById('mobileBtn');
+    const menu = document.querySelector('.mobile-menu');
+    btn && btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    // Join Now link navigation
+    const joinNow = document.getElementById('joinNowLink');
+    joinNow && joinNow.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = 'signup.html';
+    });
+  </script>
+</nav>
+
+<div class="max-w-6xl mx-auto px-6 py-10">
+  <h2 class="text-3xl font-bold mb-6">Our Services</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-xl shadow p-6">
+      <h3 class="text-xl font-semibold mb-2">Join a Trip</h3>
+      <p class="text-gray-700">Browse hosted trips and request to join. See trip details and contact hosts.</p>
+    </div>
+    <div class="bg-white rounded-xl shadow p-6">
+      <h3 class="text-xl font-semibold mb-2">Create a Trip</h3>
+      <p class="text-gray-700">Host your own trip, set dates, description, and manage participants.</p>
+    </div>
+    <div class="bg-white rounded-xl shadow p-6">
+      <h3 class="text-xl font-semibold mb-2">Bookings (Future)</h3>
+      <p class="text-gray-700">Integration for flights, trains, buses, hotels and restaurants — coming soon.</p>
+    </div>
+    <div class="bg-white rounded-xl shadow p-6">
+      <h3 class="text-xl font-semibold mb-2">Local Guides</h3>
+      <p class="text-gray-700">Find and hire local tour guides for safe, informed experiences.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
