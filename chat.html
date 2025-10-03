@@ -1,0 +1,16 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>voyagr — Chat</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <header class="header"><div class="brand">voyagr</div><div class="nav"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="trips.html">Trips</a><a href="profile.html">Profile</a></div></header>
+  <main class="container">
+    <section class="card">
+      <h3>Messages</h3>
+      <div style="display:flex;gap:12px;">
+        <div style="width:260px"><input class="field" id="chatSearch" placeholder="Find user or group"><div id="chatList" style="margin-top:12px"></div></div>
+        <div style="flex:1"><div id="chatWindow" style="height:420px;border:1px solid #eef3fb;padding:12px;border-radius:8px;overflow:auto"></div><div style="display:flex;gap:8px;margin-top:8px"><input class="field" id="msgInput" placeholder="Write a message"><button class="btn" id="sendBtn">Send</button></div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">voyagr</footer>
+  <script type="module">document.getElementById('sendBtn').addEventListener('click', ()=>{const t=document.getElementById('msgInput').value.trim(); if(!t) return; const el=document.createElement('div'); el.className='card'; el.style.marginTop='8px'; el.innerText='You: '+t; document.getElementById('chatWindow').appendChild(el); document.getElementById('msgInput').value='';});</script>
+</body></html>

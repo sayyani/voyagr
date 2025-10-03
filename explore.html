@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>voyagr — Explore</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <header class="header"><div class="brand">voyagr</div><div class="nav"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="trips.html">Trips</a><a href="profile.html">Profile</a></div></header>
+  <main class="container">
+    <section class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Discover places & people</h3>
+        <div style="display:flex;gap:8px;align-items:center"><input class="field" id="searchInput" placeholder="Search destinations or people"><button class="btn" id="searchBtn">Search</button></div>
+      </div>
+      <div style="margin-top:12px" id="resultsGrid" class="grid"></div>
+    </section>
+  </main>
+  <footer class="footer">voyagr</footer>
+  <script type="module">
+    const sample=[{title:'Everest'},{title:'Bangkok'},{title:'Paris'},{title:'Bali'}];const g=document.getElementById('resultsGrid');sample.forEach(s=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<div class="card-media"></div><h4>${s.title}</h4><p class="small">Tap to view</p>`;g.appendChild(c)});
+  </script>
+</body></html>
