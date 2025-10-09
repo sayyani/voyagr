@@ -1,57 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile - voyagr</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="profile-container">
-    <h1>My Profile</h1>
-    <div id="profileInfo">
-      <p><strong>Name:</strong> <span id="name"></span></p>
-      <p><strong>Email:</strong> <span id="email"></span></p>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>voyagr — Profile</title><link rel="stylesheet" href="styles.css"></head><body>
+<header class="header"><div class="brand"><div class="logo">V</div>voyagr</div><nav class="nav"><a href="index.html">Home</a><a href="peaks.html">14 Peaks</a><a href="profile.html">Profile</a><a href="contact.html">Contact</a><a class="cta" href="signup.html">Join</a></nav></header>
+<main class="container">
+  <section class="profile-card card">
+    <img class="avatar" src="https://source.unsplash.com/200x200/?portrait,traveler" alt="avatar">
+    <div>
+      <h2>Alex Traveler</h2>
+      <div class="small">@alex_travels</div>
+      <p class="small" style="margin-top:8px">Adventure seeker — climbed 6 peaks, loves hidden waterfalls and street food. Based in Kathmandu.</p>
+      <div class="stats">
+        <div class="stat"><strong>1.2k</strong><div class="small">Followers</div></div>
+        <div class="stat"><strong>360</strong><div class="small">Following</div></div>
+        <div class="stat"><strong>48</strong><div class="small">Trips</div></div>
+      </div>
+      <div style="margin-top:10px"><button class="btn">Follow</button> <button class="btn ghost">Message</button></div>
     </div>
-    <button id="logoutBtn">Logout</button>
-  </div>
+  </section>
 
-  <!-- Firebase Profile Script -->
-  <script type="module">
-    import { auth, db } from './firebase-app.js';
-    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    const nameEl = document.getElementById("name");
-    const emailEl = document.getElementById("email");
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    // Watch for user state
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // Load profile from Firestore
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          nameEl.textContent = data.firstName + " " + data.lastName;
-          emailEl.textContent = data.email;
-        } else {
-          nameEl.textContent = "Unknown User";
-          emailEl.textContent = user.email;
-        }
-      } else {
-        // No user logged in → redirect to login
-        window.location.href = "login.html";
-      }
-    });
-
-    // Logout function
-    logoutBtn.addEventListener("click", async () => {
-      await signOut(auth);
-      window.location.href = "login.html";
-    });
-  </script>
-</body>
-</html>
+  <section class="card" style="margin-top:18px">
+    <div class="tabs"><div class="tab active" data-tab="posts">Posts</div><div class="tab" data-tab="albums">Albums</div><div class="tab" data-tab="trips">Trips</div></div>
+    <div id="posts" class="tab-panel">
+      <div class="post-grid">
+        <div class="post-card card"><img src="https://source.unsplash.com/400x300/?mountain,trail" alt=""><div style="padding:8px"><strong>Sunrise at Basecamp</strong><p class="small">Everest Base Camp • 2024</p></div></div>
+        <div class="post-card card"><img src="https://source.unsplash.com/400x300/?city,night" alt=""><div style="padding:8px"><strong>Bangkok Nights</strong><p class="small">Street food crawl • 2023</p></div></div>
+        <div class="post-card card"><img src="https://source.unsplash.com/400x300/?beach,sunset" alt=""><div style="padding:8px"><strong>Bali Sunrise</strong><p class="small">Beach & yoga • 2022</p></div></div>
+      </div>
+    </div>
+    <div id="albums" class="tab-panel" style="display:none">
+      <div class="grid" style="margin-top:10px">
+        <div class="card"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?thailand,market')"></div><div class="meta"><h4>Thailand Trip</h4><p class="small">32 photos</p></div></div>
+        <div class="card"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?alps')"></div><div class="meta"><h4>Alps</h4><p class="small">16 photos</p></div></div>
+      </div>
+    </div>
+    <div id="trips" class="tab-panel" style="display:none">
+      <div class="grid" style="margin-top:10px">
+        <div class="card"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?trekking')"></div><div class="meta"><h4>Annapurna Circuit</h4><p class="small">Hosted • 6 spots</p></div></div>
+        <div class="card"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?desert')"></div><div class="meta"><h4>Wadi Rum Camp</h4><p class="small">Joined • 4 people</p></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">© 2025 voyagr — Connect. Explore. Discover.</footer>
+<script src="scripts.js"></script>
+</body></html>

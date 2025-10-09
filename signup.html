@@ -1,59 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signup - voyagr</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="auth-container">
-    <h1>Sign Up for voyagr</h1>
-    <form id="signupForm">
-      <input type="text" id="firstName" placeholder="First Name" required>
-      <input type="text" id="lastName" placeholder="Last Name" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="login.html">Login</a></p>
-  </div>
-
-  <!-- Firebase Signup Script -->
-  <script type="module">
-    import { auth, db } from './firebase-app.js';
-    import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    const signupForm = document.getElementById("signupForm");
-
-    signupForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const firstName = document.getElementById("firstName").value;
-      const lastName = document.getElementById("lastName").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      try {
-        // Create user in Firebase Auth
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        // Save profile in Firestore
-        await setDoc(doc(db, "users", user.uid), {
-          firstName,
-          lastName,
-          email,
-          createdAt: new Date()
-        });
-
-        alert("Signup successful! You can now login.");
-        window.location.href = "login.html"; // redirect
-      } catch (error) {
-        alert("Error: " + error.message);
-      }
-    });
-  </script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sign up — voyagr</title><link rel="stylesheet" href="styles.css"></head><body>
+<header class="header"><div class="brand"><div class="logo">V</div>voyagr</div></header>
+<main class="container"><section class="card" style="max-width:720px;margin:24px auto"><h2>Create your account</h2>
+<form id="signupForm" style="margin-top:12px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><input class="field" id="firstName" placeholder="First name"><input class="field" id="lastName" placeholder="Last name"></div>
+  <input class="field" id="username" placeholder="Username"><input class="field" id="email" placeholder="Email"><input class="field" id="password" type="password" placeholder="Password">
+  <div style="display:flex;gap:8px;align-items:center;margin-top:8px"><input type="checkbox" id="acceptPolicy"><label class="small" for="acceptPolicy">I agree to the Privacy Policy</label></div>
+  <div style="display:flex;gap:8px;margin-top:12px;align-items:center"><button class="btn" type="submit">Sign up</button><a href="login.html" class="small">Already have an account?</a></div>
+  <p id="signupMsg" class="small"></p>
+</form></section></main><footer class="footer">© 2025 voyagr</footer>
+<script>document.getElementById('signupForm').addEventListener('submit',(e)=>{e.preventDefault();if(!document.getElementById('acceptPolicy').checked){document.getElementById('signupMsg').innerText='Please accept policy';return;}document.getElementById('signupMsg').innerText='Simulated signup — integrate Firebase to enable accounts.';setTimeout(()=>window.location.href='login.html',900);});</script></body></html>

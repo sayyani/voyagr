@@ -1,43 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - voyagr</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="auth-container">
-    <h1>Login to voyagr</h1>
-    <form id="loginForm">
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-    </form>
-    <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
-  </div>
-
-  <!-- Firebase Login Script -->
-  <script type="module">
-    import { auth } from './firebase-app.js';
-    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-    const loginForm = document.getElementById("loginForm");
-
-    loginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        alert("Login successful!");
-        window.location.href = "profile.html"; // redirect
-      } catch (error) {
-        alert("Error: " + error.message);
-      }
-    });
-  </script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Login — voyagr</title><link rel="stylesheet" href="styles.css"></head><body>
+<header class="header"><div class="brand"><div class="logo">V</div>voyagr</div></header>
+<main class="container"><section class="card" style="max-width:520px;margin:28px auto"><h2>Welcome back</h2><p class="small">Login with email or username</p>
+<form id="loginForm" style="margin-top:12px"><input class="field" id="loginUser" placeholder="Email or username"><input class="field" id="loginPass" type="password" placeholder="Password"><div style="display:flex;gap:10px;align-items:center;margin-top:8px"><button class="btn" type="submit">Login</button><a href="signup.html" class="small">Create account</a></div><p id="loginMsg" class="small"></p></form></section></main><footer class="footer">© 2025 voyagr</footer>
+<script>document.getElementById('loginForm').addEventListener('submit',(e)=>{e.preventDefault();document.getElementById('loginMsg').innerText='Simulated login — integrate Firebase to authenticate.';setTimeout(()=>window.location.href='profile.html',700);});</script></body></html>

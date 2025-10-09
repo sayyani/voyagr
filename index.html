@@ -1,29 +1,78 @@
 <!doctype html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>voyagr — Home</title><link rel="stylesheet" href="styles.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>voyagr — Discover journeys</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-  <header class="header"><div class="brand">voyagr</div><div class="nav"><a href="login.html">Login</a><a href="signup.html">Join</a></div></header>
+  <header class="header">
+    <div class="brand"><div class="logo">V</div>voyagr</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="peaks.html">14 Peaks</a>
+      <a href="profile.html">Profile</a>
+      <a href="contact.html">Contact</a>
+      <a class="cta" href="signup.html">Join</a>
+    </nav>
+  </header>
+
   <main class="container">
-    <section class="card hero" style="background-image: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));">
-      <div class="hero-left">
-        <h1>Discover journeys. Find companions. Create memories.</h1>
-        <p class="small">voyagr connects travelers: host trips, join adventures, share albums and hidden spots. Sign up to start your next journey.</p>
+    <section class="hero">
+      <div>
+        <h1>Your next great story begins here</h1>
+        <p class="small">Find travel companions, host trips, share albums and discover hidden spots — all in one place.</p>
         <div class="controls">
-          <a href="signup.html"><button class="btn">Join a Trip</button></a>
-          <a href="signup.html"><button class="btn ghost">Call a Trip</button></a>
+          <button class="btn" data-open-modal="joinModal">Join a Trip</button>
+          <button class="btn ghost" data-open-modal="callModal">Call a Trip</button>
+        </div>
+
+        <div class="section" style="margin-top:22px">
+          <h3>Top Destinations</h3>
+          <div class="grid" id="topDest">
+            <div class="card dest-card" data-name="Bali"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?bali,beach')"></div><div class="meta"><h4>Bali</h4><p class="small">Beaches & rice terraces</p></div></div>
+            <div class="card dest-card" data-name="Everest"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?mount-everest')"></div><div class="meta"><h4>Everest Base Camp</h4><p class="small">High-altitude trekking</p></div></div>
+            <div class="card dest-card" data-name="Paris"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?paris')"></div><div class="meta"><h4>Paris</h4><p class="small">Food & culture</p></div></div>
+            <div class="card dest-card" data-name="Iceland"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?iceland')"></div><div class="meta"><h4>Iceland</h4><p class="small">Lands of fire & ice</p></div></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="hero-card card">
+        <div class="hero-media" style="background-image:url('https://source.unsplash.com/900x700/?travel,mountains')"></div>
+        <div class="hero-info">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="tag">Featured</div><h3 style="margin:8px 0 0 0">Hidden Trails of Nepal</h3></div><div class="small">4 days</div></div>
+          <p class="small" style="margin-top:10px">A sample itinerary for adventurous travelers seeking hidden trails and culture.</p>
         </div>
       </div>
-      <div style="width:360px"><div class="card-media">Your travel photo</div></div>
     </section>
-    <section style="margin-top:20px">
-      <div class="section-title"><h3>Trending Destinations</h3><a href="explore.html" class="small">Explore all</a></div>
-      <div class="grid" id="trending"></div>
+
+    <section class="section">
+      <h3>Popular Trips</h3>
+      <div class="grid">
+        <div class="card"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?trekking')"></div><div class="meta"><h4>Annapurna Circuit</h4><p class="small">Hosted by: @mountlover • 6 spots</p></div></div>
+        <div class="card"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?citytrip')"></div><div class="meta"><h4>Bangkok Food Crawl</h4><p class="small">Hosted by: @tasteguide • 10 spots</p></div></div>
+        <div class="card"><div class="media" style="background-image:url('https://source.unsplash.com/800x600/?island')"></div><div class="meta"><h4>Bali Yoga & Beach</h4><p class="small">Hosted by: @sunseeker • 8 spots</p></div></div>
+      </div>
     </section>
+
+    <section class="section">
+      <h3>Find People & Trips</h3>
+      <div style="display:flex;gap:12px;align-items:center;margin-top:10px"><div class="search"><input id="searchInput" placeholder="Search destinations or people" style="border:none;outline:none;font-size:0.95rem"></div></div>
+    </section>
+
   </main>
-  <footer class="footer">voyagr • connect, explore, share</footer>
-  <script type="module">
-    const data=[{name:'Everest Base Camp',note:'High altitude trek'},{name:'Bangkok',note:'City adventures'},{name:'Paris',note:'Culture & food'},{name:'Bali',note:'Beaches'}];
-    const g=document.getElementById('trending');
-    data.forEach(d=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<div class="card-media"></div><h4 style="margin-top:8px">${d.name}</h4><p class="small">${d.note}</p>`;g.appendChild(c)});
-  </script>
-</body></html>
+
+  <footer class="footer">© 2025 voyagr — Connect. Explore. Discover.</footer>
+
+  <!-- Join / Call modals -->
+  <div id="joinModal" class="modal">
+    <div class="box"><button class="close" onclick="document.getElementById('joinModal').classList.remove('show')">Close</button><h3>Join a Trip</h3><p class="small">Browse open trips and request to join.</p></div>
+  </div>
+  <div id="callModal" class="modal">
+    <div class="box"><button class="close" onclick="document.getElementById('callModal').classList.remove('show')">Close</button><h3>Call a Trip</h3><p class="small">Create a new trip and invite travelers.</p></div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
